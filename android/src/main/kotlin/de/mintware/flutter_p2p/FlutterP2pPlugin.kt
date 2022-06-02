@@ -26,7 +26,9 @@ import java.lang.reflect.Method
 import java.util.HashMap
 import android.content.pm.PackageManager
 import android.net.wifi.p2p.WifiP2pConfig
+import android.os.Build
 import androidx.annotation.Keep
+import androidx.annotation.RequiresApi
 import de.mintware.flutter_p2p.utility.EventChannelPool
 import de.mintware.flutter_p2p.wifi_direct.ResultActionListener
 import de.mintware.flutter_p2p.wifi_direct.SocketPool
@@ -106,14 +108,16 @@ class FlutterP2pPlugin(private val registrar: Registrar
 
     //region Permissions
 
+    @RequiresApi(Build.VERSION_CODES.M)
     @Keep
     @Suppress("unused", "UNUSED_PARAMETER")
     private fun requestLocationPermission(call: MethodCall, result: Result) {
         val perm = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
-        registrar.activity().requestPermissions(perm, REQUEST_ENABLE_LOCATION)
+        registrar?.activity()?.requestPermissions(perm, REQUEST_ENABLE_LOCATION)
         result.success(true)
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     @Keep
     @Suppress("unused", "UNUSED_PARAMETER")
     private fun isLocationPermissionGranted(call: MethodCall, result: Result) {

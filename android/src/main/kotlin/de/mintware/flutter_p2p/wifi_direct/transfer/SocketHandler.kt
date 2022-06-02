@@ -26,7 +26,10 @@ class SocketHandler(private val socket: Socket,
         var readCount = 0
 
         val port = if (isHost) socket.localPort else (socket.port)
-        while ({ readCount = inputStream.read(buf);readCount }() != -1) {
+        while (run {
+                readCount = inputStream.read(buf)
+                readCount
+            } != -1) {
             val result = ProtoHelper.create(port, buf.take(readCount).toByteArray(), inputStream.available())
             cb(result.toByteArray())
         }

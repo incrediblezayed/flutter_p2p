@@ -1,5 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="de.mintware.flutter_p2p_example">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="de.mintware.flutter_p2p_example">
 
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -9,17 +8,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
-    <application
-        android:name="io.flutter.app.FlutterApplication"
-        android:icon="@mipmap/ic_launcher"
-        android:label="flutter_p2p_example">
-        <activity
-            android:name=".MainActivity"
-            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-            android:hardwareAccelerated="true"
-            android:launchMode="singleTop"
-            android:theme="@style/LaunchTheme"
-            android:windowSoftInputMode="adjustResize">
+    <application android:name="${applicationName}" android:icon="@mipmap/ic_launcher" android:label="flutter_p2p_example">
+        <activity android:exported="true" android:name=".MainActivity" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" android:hardwareAccelerated="true" android:launchMode="singleTop" android:theme="@style/LaunchTheme" android:windowSoftInputMode="adjustResize">
             <!-- This keeps the window background of the activity showing
                  until Flutter renders its first frame. It can be removed if
                  there is no splash screen (such as the default splash screen
@@ -28,9 +18,8 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <meta-data
-                android:name="io.flutter.app.android.SplashScreenUntilFirstFrame"
-                android:value="true" />
+            <meta-data android:name="io.flutter.app.android.SplashScreenUntilFirstFrame" android:value="true" />
         </activity>
+        <meta-data android:name="flutterEmbedding" android:value="2" />
     </application>
 </manifest>
