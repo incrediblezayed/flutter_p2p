@@ -16,7 +16,7 @@ import java.net.Socket
 
 abstract class SocketTask(private val inputStreamHandler: StreamHandler) : AsyncTask<Void, ByteArray, Boolean>() {
 
-    lateinit var socket: Socket
+     var socket: Socket = Socket()
 
     override fun onProgressUpdate(vararg values: ByteArray?) {
         inputStreamHandler.sink?.success(values[0])
