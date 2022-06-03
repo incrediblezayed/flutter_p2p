@@ -246,7 +246,9 @@ class FlutterP2pPlugin(private val registrar: Registrar
             result.error("Invalid port given", null, null)
             return
         }
-
+if(!this::socketPool.isInitialized){
+setupEventPool()
+}
         socketPool.openSocket(port)
         result.success(true)
     }
@@ -259,7 +261,9 @@ class FlutterP2pPlugin(private val registrar: Registrar
             result.error("Invalid port given", null, null)
             return
         }
-
+        if(!this::socketPool.isInitialized){
+            setupEventPool()
+        }
         socketPool.closeSocket(port)
         result.success(true)
     }
@@ -267,6 +271,9 @@ class FlutterP2pPlugin(private val registrar: Registrar
     @Keep
     @Suppress("unused", "UNUSED_PARAMETER")
     fun acceptPort(call: MethodCall, result: Result) {
+        if(!this::socketPool.isInitialized){
+            setupEventPool()
+        }
         val port = call.argument<Int>("port")
         if (port == null) {
             result.error("Invalid port given", null, null)
@@ -284,6 +291,9 @@ class FlutterP2pPlugin(private val registrar: Registrar
     @Keep
     @Suppress("unused", "UNUSED_PARAMETER")
     fun connectToHost(call: MethodCall, result: Result) {
+        if(!this::socketPool.isInitialized){
+            setupEventPool()
+        }
         val address = call.argument<String>("address")
         val port = call.argument<Int>("port")
         val timeout = call.argument<Int>("timeout") ?: config.timeout
@@ -300,6 +310,9 @@ class FlutterP2pPlugin(private val registrar: Registrar
     @Keep
     @Suppress("unused", "UNUSED_PARAMETER")
     fun disconnectFromHost(call: MethodCall, result: Result) {
+        if(!this::socketPool.isInitialized){
+            setupEventPool()
+        }
         val port = call.argument<Int>("port")
         if (port == null) {
             result.error("Invalid port given", null, null)
@@ -315,6 +328,9 @@ class FlutterP2pPlugin(private val registrar: Registrar
     @Keep
     @Suppress("unused", "UNUSED_PARAMETER")
     fun sendDataToHost(call: MethodCall, result: Result) {
+        if(!this::socketPool.isInitialized){
+            setupEventPool()
+        }
         val socketMessage = Protos.SocketMessage.parseFrom(call.argument<ByteArray>("payload"))
 
         this.socketPool.sendDataToHost(socketMessage.port, socketMessage.data.toByteArray())
@@ -324,6 +340,9 @@ class FlutterP2pPlugin(private val registrar: Registrar
     @Keep
     @Suppress("unused", "UNUSED_PARAMETER")
     fun sendDataToClient(call: MethodCall, result: Result) {
+        if(!this::socketPool.isInitialized){
+            setupEventPool()
+        }
         val socketMessage = Protos.SocketMessage.parseFrom(call.argument<ByteArray>("payload"))
 
         this.socketPool.sendDataToClient(socketMessage.port, socketMessage.data.toByteArray())
