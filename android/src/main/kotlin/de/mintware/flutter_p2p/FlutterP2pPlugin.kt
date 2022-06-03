@@ -33,10 +33,10 @@ import de.mintware.flutter_p2p.utility.EventChannelPool
 import de.mintware.flutter_p2p.wifi_direct.ResultActionListener
 import de.mintware.flutter_p2p.wifi_direct.SocketPool
 import de.mintware.flutter_p2p.wifi_direct.WiFiDirectBroadcastReceiver
+import io.flutter.embedding.engine.plugins.FlutterPlugin
 
 
-class FlutterP2pPlugin(private val registrar: Registrar
-) : MethodCallHandler {
+class FlutterP2pPlugin(private val registrar: Registrar): MethodCallHandler, FlutterPlugin {
 
     private val intentFilter = IntentFilter()
     private var receiver: WiFiDirectBroadcastReceiver? = null
@@ -78,7 +78,6 @@ class FlutterP2pPlugin(private val registrar: Registrar
         eventPool.register(CH_DEVICE_CHANGE)
         eventPool.register(CH_SOCKET_READ)
         eventPool.register(CH_DISCOVERY_CHANGE)
-
         socketPool = SocketPool(eventPool.getHandler(CH_SOCKET_READ))
     }
 
@@ -139,6 +138,7 @@ class FlutterP2pPlugin(private val registrar: Registrar
     fun register(call: MethodCall, result: Result) {
         if (receiver != null) {
             result.success(false)
+            return
             return
         }
 
@@ -369,6 +369,17 @@ class FlutterP2pPlugin(private val registrar: Registrar
         for (method in m) {
             methodMap[method.name] = method
         }
+    }
+
+    override fun onAttachedToEngine(binding: FlutterPlugin.FlutterPluginBinding) {
+        TODO("Not yet implemented")
+        setupEventPool()
+        print("onAttachedToEngine")
+    }
+
+    override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
+        TODO("Not yet implemented")
+        print("onDetachedFromEngine")
     }
     //endregion
 }

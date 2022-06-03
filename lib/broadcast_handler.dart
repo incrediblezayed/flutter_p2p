@@ -28,10 +28,10 @@ class WiFiDirectBroadcastReceiver {
   static EventChannel _discoveryChangeChannel =
       EventChannel("$_channelBase/bc/discovery-change");
 
-  static Stream<StateChange>? _stateChangeStream;
+  static Stream<StateChange>? _stateChangeStream ;
   static Stream<WifiP2pDeviceList>? _peersChangeStream;
-  static Stream<ConnectionChange>? _connectionChangeStream;
-  static Stream<WifiP2pDevice>? _thisDeviceChangeStream;
+  static Stream<ConnectionChange>? _connectionChangeStream ;
+  static Stream<WifiP2pDevice>? _thisDeviceChangeStream ;
   static Stream<DiscoveryStateChange>? _discoveryChangeStream;
 
   Stream<StateChange>? get stateChange {
