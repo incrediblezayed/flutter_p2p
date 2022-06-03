@@ -342,11 +342,11 @@ setupEventPool()
     fun sendDataToClient(call: MethodCall, result: Result) {
         if(!this::socketPool.isInitialized){
             setupEventPool()
-        }
+        }else{
         val socketMessage = Protos.SocketMessage.parseFrom(call.argument<ByteArray>("payload"))
 
         this.socketPool.sendDataToClient(socketMessage.port, socketMessage.data.toByteArray())
-        result.success(true)
+        result.success(true)}
     }
 
     // endregion
