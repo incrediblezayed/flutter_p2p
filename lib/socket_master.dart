@@ -17,7 +17,7 @@ class SocketMaster {
 
   Map<int, P2pSocket> sockets = {};
 
-  Stream<SocketMessage> _readStream;
+  late Stream<SocketMessage> _readStream;
 
   SocketMaster() {
     _readStream = _socketReadChannel.receiveBroadcastStream().map((a) {
@@ -30,7 +30,7 @@ class SocketMaster {
     });
   }
 
-  P2pSocket registerSocket(int port, bool isHost) {
+  P2pSocket? registerSocket(int port, bool isHost) {
     if (sockets[port] == null) {
       sockets[port] = P2pSocket(
         port,

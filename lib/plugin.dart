@@ -20,11 +20,11 @@ class FlutterP2p {
 
   //region Permissions
 
-  static Future<bool> isLocationPermissionGranted() async {
+  static Future<bool?> isLocationPermissionGranted() async {
     return await _channel.invokeMethod("isLocationPermissionGranted", {});
   }
 
-  static Future<bool> requestLocationPermission() async {
+  static Future<bool?> requestLocationPermission() async {
     return await _channel.invokeMethod("requestLocationPermission", {});
   }
 
@@ -32,11 +32,11 @@ class FlutterP2p {
 
   //region WiFi Event Subscription
 
-  static Future<bool> register() async {
+  static Future<bool?> register() async {
     return await _channel.invokeMethod("register", {});
   }
 
-  static Future<bool> unregister() async {
+  static Future<bool?> unregister() async {
     return await _channel.invokeMethod("unregister", {});
   }
 
@@ -44,11 +44,11 @@ class FlutterP2p {
 
   //region Discover
 
-  static Future<bool> discoverDevices() async {
+  static Future<bool?> discoverDevices() async {
     return await _channel.invokeMethod("discover", {});
   }
 
-  static Future<bool> stopDiscoverDevices() async {
+  static Future<bool?> stopDiscoverDevices() async {
     return await _channel.invokeMethod("stopDiscover", {});
   }
 
@@ -56,16 +56,16 @@ class FlutterP2p {
 
   //region Connection
 
-  static Future<bool> connect(WifiP2pDevice device) async {
+  static Future<bool?> connect(WifiP2pDevice device) async {
     return await _channel
         .invokeMethod("connect", {"payload": device.writeToBuffer()});
   }
 
-  static Future<bool> cancelConnect(WifiP2pDevice device) async {
+  static Future<bool?> cancelConnect(WifiP2pDevice device) async {
     return await _channel.invokeMethod("cancelConnect", {});
   }
 
-  static Future<bool> removeGroup() async {
+  static Future<bool?> removeGroup() async {
     return await _channel.invokeMethod("removeGroup", {});
   }
 
@@ -73,7 +73,7 @@ class FlutterP2p {
 
   //region Host Advertising
 
-  static Future<P2pSocket> openHostPort(int port) async {
+  static Future<P2pSocket?> openHostPort(int port) async {
     await _channel.invokeMethod("openHostPort", {"port": port});
     return _socketMaster.registerSocket(port, true);
   }
@@ -83,7 +83,7 @@ class FlutterP2p {
     return _socketMaster.unregisterServerPort(port);
   }
 
-  static Future<bool> acceptPort(int port) async {
+  static Future<bool?> acceptPort(int port) async {
     return await _channel.invokeMethod("acceptPort", {"port": port});
   }
 
@@ -91,22 +91,23 @@ class FlutterP2p {
 
   //region Client Connection
 
-  static Future<P2pSocket> connectToHost(
+  static Future<P2pSocket?> connectToHost(
     String address,
     int port, {
     int timeout = 500,
   }) async {
-    if (await _channel.invokeMethod("connectToHost", {
-      "address": address,
-      "port": port,
-      "timeout": timeout,
-    })) {
+    if (await (_channel.invokeMethod("connectToHost", {
+          "address": address,
+          "port": port,
+          "timeout": timeout,
+        })) ??
+        false) {
       return _socketMaster.registerSocket(port, false);
     }
     return null;
   }
 
-  static Future<bool> disconnectFromHost(int port) async {
+  static Future<bool?> disconnectFromHost(int port) async {
     return await _channel.invokeMethod("disconnectFromHost", {
       "port": port,
     });
@@ -116,7 +117,7 @@ class FlutterP2p {
 
   //region Data Transfer
 
-  static Future<bool> sendData(int port, bool isHost, Uint8List data) async {
+  static Future<bool?> sendData(int port, bool isHost, Uint8List data) async {
     var req = SocketMessage.create();
     req.port = port;
     req.data = data;

@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: protos/protos.proto
 //
-// @dart = 2.3
+
 // ignore_for_file: camel_case_types,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type
 
 import 'dart:core' as $core;
@@ -29,7 +29,7 @@ class StateChange extends $pb.GeneratedMessage {
       create()..mergeFromJson(i, r);
   StateChange clone() => StateChange()..mergeFromMessage(this);
   StateChange copyWith(void Function(StateChange) updates) =>
-      super.copyWith((message) => updates(message as StateChange));
+      super.copyWith((message) => updates(message as StateChange)) as StateChange;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static StateChange create() => StateChange._();
@@ -38,7 +38,7 @@ class StateChange extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static StateChange getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<StateChange>(create);
-  static StateChange _defaultInstance;
+  static StateChange? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.bool get isEnabled => $_getBF(0);
@@ -82,7 +82,7 @@ class WifiP2pDevice extends $pb.GeneratedMessage {
       create()..mergeFromJson(i, r);
   WifiP2pDevice clone() => WifiP2pDevice()..mergeFromMessage(this);
   WifiP2pDevice copyWith(void Function(WifiP2pDevice) updates) =>
-      super.copyWith((message) => updates(message as WifiP2pDevice));
+      super.copyWith((message) => updates(message as WifiP2pDevice)) as WifiP2pDevice;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static WifiP2pDevice create() => WifiP2pDevice._();
@@ -92,7 +92,7 @@ class WifiP2pDevice extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static WifiP2pDevice getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<WifiP2pDevice>(create);
-  static WifiP2pDevice _defaultInstance;
+  static WifiP2pDevice? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.bool get wpsPbcSupported => $_getBF(0);
@@ -232,7 +232,7 @@ class WifiP2pDeviceList extends $pb.GeneratedMessage {
       create()..mergeFromJson(i, r);
   WifiP2pDeviceList clone() => WifiP2pDeviceList()..mergeFromMessage(this);
   WifiP2pDeviceList copyWith(void Function(WifiP2pDeviceList) updates) =>
-      super.copyWith((message) => updates(message as WifiP2pDeviceList));
+      super.copyWith((message) => updates(message as WifiP2pDeviceList)) as WifiP2pDeviceList;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static WifiP2pDeviceList create() => WifiP2pDeviceList._();
@@ -242,7 +242,7 @@ class WifiP2pDeviceList extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static WifiP2pDeviceList getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<WifiP2pDeviceList>(create);
-  static WifiP2pDeviceList _defaultInstance;
+  static WifiP2pDeviceList? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.List<WifiP2pDevice> get devices => $_getList(0);
@@ -267,7 +267,7 @@ class ConnectionChange extends $pb.GeneratedMessage {
       create()..mergeFromJson(i, r);
   ConnectionChange clone() => ConnectionChange()..mergeFromMessage(this);
   ConnectionChange copyWith(void Function(ConnectionChange) updates) =>
-      super.copyWith((message) => updates(message as ConnectionChange));
+      super.copyWith((message) => updates(message as ConnectionChange)) as ConnectionChange;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static ConnectionChange create() => ConnectionChange._();
@@ -277,7 +277,7 @@ class ConnectionChange extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static ConnectionChange getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<ConnectionChange>(create);
-  static ConnectionChange _defaultInstance;
+  static ConnectionChange? _defaultInstance;
 
   @$pb.TagNumber(1)
   WifiP2pInfo get wifiP2pInfo => $_getN(0);
@@ -326,7 +326,7 @@ class WifiP2pInfo extends $pb.GeneratedMessage {
       create()..mergeFromJson(i, r);
   WifiP2pInfo clone() => WifiP2pInfo()..mergeFromMessage(this);
   WifiP2pInfo copyWith(void Function(WifiP2pInfo) updates) =>
-      super.copyWith((message) => updates(message as WifiP2pInfo));
+      super.copyWith((message) => updates(message as WifiP2pInfo)) as WifiP2pInfo;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static WifiP2pInfo create() => WifiP2pInfo._();
@@ -335,7 +335,7 @@ class WifiP2pInfo extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static WifiP2pInfo getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<WifiP2pInfo>(create);
-  static WifiP2pInfo _defaultInstance;
+  static WifiP2pInfo? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.bool get groupFormed => $_getBF(0);
@@ -397,7 +397,7 @@ class NetworkInfo extends $pb.GeneratedMessage {
       create()..mergeFromJson(i, r);
   NetworkInfo clone() => NetworkInfo()..mergeFromMessage(this);
   NetworkInfo copyWith(void Function(NetworkInfo) updates) =>
-      super.copyWith((message) => updates(message as NetworkInfo));
+      super.copyWith((message) => updates(message as NetworkInfo)) as NetworkInfo;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static NetworkInfo create() => NetworkInfo._();
@@ -406,7 +406,7 @@ class NetworkInfo extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static NetworkInfo getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<NetworkInfo>(create);
-  static NetworkInfo _defaultInstance;
+  static NetworkInfo? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.int get subType => $_getIZ(0);
@@ -477,7 +477,7 @@ class RequestPermissionResult extends $pb.GeneratedMessage {
       RequestPermissionResult()..mergeFromMessage(this);
   RequestPermissionResult copyWith(
           void Function(RequestPermissionResult) updates) =>
-      super.copyWith((message) => updates(message as RequestPermissionResult));
+      super.copyWith((message) => updates(message as RequestPermissionResult)) as RequestPermissionResult;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static RequestPermissionResult create() => RequestPermissionResult._();
@@ -487,7 +487,7 @@ class RequestPermissionResult extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static RequestPermissionResult getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<RequestPermissionResult>(create);
-  static RequestPermissionResult _defaultInstance;
+  static RequestPermissionResult? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.int get requestCode => $_getIZ(0);
@@ -524,7 +524,7 @@ class SocketMessage extends $pb.GeneratedMessage {
       create()..mergeFromJson(i, r);
   SocketMessage clone() => SocketMessage()..mergeFromMessage(this);
   SocketMessage copyWith(void Function(SocketMessage) updates) =>
-      super.copyWith((message) => updates(message as SocketMessage));
+      super.copyWith((message) => updates(message as SocketMessage)) as SocketMessage;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static SocketMessage create() => SocketMessage._();
@@ -534,7 +534,7 @@ class SocketMessage extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static SocketMessage getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<SocketMessage>(create);
-  static SocketMessage _defaultInstance;
+  static SocketMessage? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.int get port => $_getIZ(0);
@@ -590,7 +590,7 @@ class DiscoveryStateChange extends $pb.GeneratedMessage {
   DiscoveryStateChange clone() =>
       DiscoveryStateChange()..mergeFromMessage(this);
   DiscoveryStateChange copyWith(void Function(DiscoveryStateChange) updates) =>
-      super.copyWith((message) => updates(message as DiscoveryStateChange));
+      super.copyWith((message) => updates(message as DiscoveryStateChange)) as DiscoveryStateChange;
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static DiscoveryStateChange create() => DiscoveryStateChange._();
@@ -600,7 +600,7 @@ class DiscoveryStateChange extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static DiscoveryStateChange getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<DiscoveryStateChange>(create);
-  static DiscoveryStateChange _defaultInstance;
+  static DiscoveryStateChange? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.bool get isDiscovering => $_getBF(0);

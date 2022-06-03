@@ -28,13 +28,13 @@ class WiFiDirectBroadcastReceiver {
   static EventChannel _discoveryChangeChannel =
       EventChannel("$_channelBase/bc/discovery-change");
 
-  static Stream<StateChange> _stateChangeStream;
-  static Stream<WifiP2pDeviceList> _peersChangeStream;
-  static Stream<ConnectionChange> _connectionChangeStream;
-  static Stream<WifiP2pDevice> _thisDeviceChangeStream;
-  static Stream<DiscoveryStateChange> _discoveryChangeStream;
+  static Stream<StateChange>? _stateChangeStream;
+  static Stream<WifiP2pDeviceList>? _peersChangeStream;
+  static Stream<ConnectionChange>? _connectionChangeStream;
+  static Stream<WifiP2pDevice>? _thisDeviceChangeStream;
+  static Stream<DiscoveryStateChange>? _discoveryChangeStream;
 
-  Stream<StateChange> get stateChange {
+  Stream<StateChange>? get stateChange {
     if (_stateChangeStream == null) {
       _stateChangeStream = _stateChangeChannel
           .receiveBroadcastStream()
@@ -44,7 +44,7 @@ class WiFiDirectBroadcastReceiver {
     return _stateChangeStream;
   }
 
-  Stream<WifiP2pDeviceList> get peersChange {
+  Stream<WifiP2pDeviceList>? get peersChange {
     if (_peersChangeStream == null) {
       _peersChangeStream = _peersChangeChannel
           .receiveBroadcastStream()
@@ -54,7 +54,7 @@ class WiFiDirectBroadcastReceiver {
     return _peersChangeStream;
   }
 
-  Stream<ConnectionChange> get connectionChange {
+  Stream<ConnectionChange>? get connectionChange {
     if (_connectionChangeStream == null) {
       _connectionChangeStream = _connectionChangeChannel
           .receiveBroadcastStream()
@@ -64,7 +64,7 @@ class WiFiDirectBroadcastReceiver {
     return _connectionChangeStream;
   }
 
-  Stream<WifiP2pDevice> get thisDeviceChange {
+  Stream<WifiP2pDevice>? get thisDeviceChange {
     if (_thisDeviceChangeStream == null) {
       _thisDeviceChangeStream = _thisDeviceChangeChannel
           .receiveBroadcastStream()
@@ -74,7 +74,7 @@ class WiFiDirectBroadcastReceiver {
     return _thisDeviceChangeStream;
   }
 
-  Stream<DiscoveryStateChange> get discoveryChange {
+  Stream<DiscoveryStateChange>? get discoveryChange {
     if (_discoveryChangeStream == null) {
       _discoveryChangeStream = _discoveryChangeChannel
           .receiveBroadcastStream()

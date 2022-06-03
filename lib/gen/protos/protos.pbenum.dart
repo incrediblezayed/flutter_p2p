@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: protos/protos.proto
 //
-// @dart = 2.3
+
 // ignore_for_file: camel_case_types,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type
 
 // ignore_for_file: UNDEFINED_SHOWN_NAME,UNUSED_SHOWN_NAME
@@ -31,7 +31,7 @@ class WifiP2pDevice_Status extends $pb.ProtobufEnum {
 
   static final $core.Map<$core.int, WifiP2pDevice_Status> _byValue =
       $pb.ProtobufEnum.initByValue(values);
-  static WifiP2pDevice_Status valueOf($core.int value) => _byValue[value];
+  static WifiP2pDevice_Status? valueOf($core.int value) => _byValue[value];
 
   const WifiP2pDevice_Status._($core.int v, $core.String n) : super(v, n);
 }
@@ -83,7 +83,7 @@ class NetworkInfo_DetailedState extends $pb.ProtobufEnum {
 
   static final $core.Map<$core.int, NetworkInfo_DetailedState> _byValue =
       $pb.ProtobufEnum.initByValue(values);
-  static NetworkInfo_DetailedState valueOf($core.int value) => _byValue[value];
+  static NetworkInfo_DetailedState? valueOf($core.int value) => _byValue[value];
 
   const NetworkInfo_DetailedState._($core.int v, $core.String n) : super(v, n);
 }

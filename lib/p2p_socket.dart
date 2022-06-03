@@ -19,11 +19,11 @@ class P2pSocket {
 
   P2pSocket(this.port, this.isHost, this._inputStream);
 
-  Future<bool> write(Uint8List data) async {
+  Future<bool?> write(Uint8List data) async {
     return FlutterP2p.sendData(port, isHost, data);
   }
 
-  Future<bool> writeString(String text) {
-    return write(utf8.encode(text));
+  Future<bool?> writeString(String text) {
+    return write(utf8.encode(text) as Uint8List);
   }
 }
