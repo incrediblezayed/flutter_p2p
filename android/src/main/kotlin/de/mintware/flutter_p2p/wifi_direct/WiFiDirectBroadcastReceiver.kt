@@ -21,13 +21,14 @@ import de.mintware.flutter_p2p.Protos
 import de.mintware.flutter_p2p.utility.ProtoHelper
 import io.flutter.plugin.common.EventChannel
 
-class WiFiDirectBroadcastReceiver(private val manager: WifiP2pManager,
-                                  private val channel: WifiP2pManager.Channel,
-                                  private val stateChangedSink: EventChannel.EventSink?,
-                                  peersChangedSink: EventChannel.EventSink?,
-                                  private val connectionChangedSink: EventChannel.EventSink?,
-                                  private val thisDeviceChangedSink: EventChannel.EventSink?,
-                                  private val discoveryChangedSink: EventChannel.EventSink?
+class WiFiDirectBroadcastReceiver(
+    private val manager: WifiP2pManager,
+    private val channel: WifiP2pManager.Channel,
+    private val stateChangedSink: EventChannel.EventSink?,
+    peersChangedSink: EventChannel.EventSink?,
+    private val connectionChangedSink: EventChannel.EventSink?,
+    private val thisDeviceChangedSink: EventChannel.EventSink?,
+    private val discoveryChangedSink: EventChannel.EventSink?
 ) : BroadcastReceiver() {
 
     private val peerListListener = WiFiDirectPeerListListener(peersChangedSink)
@@ -48,35 +49,39 @@ class WiFiDirectBroadcastReceiver(private val manager: WifiP2pManager,
 
     private fun onConnectionChanged(intent: Intent) {
         val p2pInfo = intent.getParcelableExtra(WifiP2pManager.EXTRA_WIFI_P2P_INFO) as WifiP2pInfo?
-        val networkInfo = intent.getParcelableExtra(WifiP2pManager.EXTRA_NETWORK_INFO) as NetworkInfo?
-        if(p2pInfo == null || networkInfo == null) {
-            return
-        }
-        manager.let { manager ->
+        val networkInfo =
+            intent.getParcelableExtra(WifiP2pManager.EXTRA_NETWORK_INFO) as NetworkInfo?
+        if (p2pInfo != null && networkInfo != null) {
 
-            if (!networkInfo!!.isConnected) {
+            manager.let { manager ->
 
-                manager.requestConnectionInfo(channel) { info ->
-                    // InetAddress from WifiP2pInfo struct.
-                    val groupOwnerAddress: String = info.groupOwnerAddress.hostAddress
+                if (!networkInfo!!.isConnected) {
 
-                    // After the group negotiation, we can determine the group owner
-                    // (server).
-                    if (info.groupFormed && info.isGroupOwner) {
-                        // Do whatever tasks are specific to the group owner.
-                        // One common case is creating a group owner thread and accepting
-                        // incoming connections.
-                    } else if (info.groupFormed) {
-                        // The other device acts as the peer (client). In this case,
-                        // you'll want to create a peer thread that connects
-                        // to the group owner.
+                    manager.requestConnectionInfo(channel) { info ->
+                        // InetAddress from WifiP2pInfo struct.
+                        val groupOwnerAddress: String = info.groupOwnerAddress.hostAddress
+
+                        // After the group negotiation, we can determine the group owner
+                        // (server).
+                        if (info.groupFormed && info.isGroupOwner) {
+                            // Do whatever tasks are specific to the group owner.
+                            // One common case is creating a group owner thread and accepting
+                            // incoming connections.
+                        } else if (info.groupFormed) {
+                            // The other device acts as the peer (client). In this case,
+                            // you'll want to create a peer thread that connects
+                            // to the group owner.
+                        }
+
                     }
-
                 }
+                connectionChangedSink?.success(
+                    ProtoHelper.create(p2pInfo!!, networkInfo!!).toByteArray()
+                )
+
             }
         }
 
-        connectionChangedSink?.success(ProtoHelper.create(p2pInfo!!, networkInfo!!).toByteArray())
     }
 
     private fun onStateChanged(intent: Intent) {
@@ -92,13 +97,17 @@ class WiFiDirectBroadcastReceiver(private val manager: WifiP2pManager,
     }
 
     private fun onThisDeviceChanged(intent: Intent) {
-        val device = intent.getParcelableExtra(WifiP2pManager.EXTRA_WIFI_P2P_DEVICE) as WifiP2pDevice?
+        val device =
+            intent.getParcelableExtra(WifiP2pManager.EXTRA_WIFI_P2P_DEVICE) as WifiP2pDevice?
         val dev: Protos.WifiP2pDevice? = ProtoHelper.create(device!!)
         thisDeviceChangedSink?.success(dev?.toByteArray())
     }
 
     private fun onDiscoveryChanged(intent: Intent) {
-        val discoveryState = intent.getIntExtra(WifiP2pManager.EXTRA_DISCOVERY_STATE, WifiP2pManager.WIFI_P2P_DISCOVERY_STOPPED);
+        val discoveryState = intent.getIntExtra(
+            WifiP2pManager.EXTRA_DISCOVERY_STATE,
+            WifiP2pManager.WIFI_P2P_DISCOVERY_STOPPED
+        );
         val stateChange: Protos.DiscoveryStateChange = ProtoHelper.create(discoveryState);
         discoveryChangedSink?.success(stateChange.toByteArray());
     }
