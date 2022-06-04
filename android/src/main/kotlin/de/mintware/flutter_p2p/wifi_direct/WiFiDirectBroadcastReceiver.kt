@@ -55,7 +55,7 @@ class WiFiDirectBroadcastReceiver(
 
             manager.let { manager ->
 
-                if (!networkInfo!!.isConnected) {
+       /*         if (!networkInfo!!.isConnected) {
 
                     manager.requestConnectionInfo(channel) { info ->
                         // InetAddress from WifiP2pInfo struct.
@@ -74,7 +74,7 @@ class WiFiDirectBroadcastReceiver(
                         }
 
                     }
-                }
+                }*/
                 connectionChangedSink?.success(
                     ProtoHelper.create(p2pInfo!!, networkInfo!!).toByteArray()
                 )
