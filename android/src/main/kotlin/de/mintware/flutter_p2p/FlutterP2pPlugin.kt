@@ -42,7 +42,6 @@ class FlutterP2pPlugin(private val registrar: Registrar
     private var receiver: WiFiDirectBroadcastReceiver? = null
     private val eventPool: EventChannelPool = EventChannelPool(registrar.messenger())
     private lateinit var socketPool: SocketPool
-
     private lateinit var channel: WifiP2pManager.Channel
     private lateinit var manager: WifiP2pManager
 
