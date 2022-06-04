@@ -77,7 +77,7 @@ class FlutterP2pPlugin(private val registrar: Registrar
         eventPool.register(CH_DEVICE_CHANGE)
         eventPool.register(CH_SOCKET_READ)
         eventPool.register(CH_DISCOVERY_CHANGE)
-        socketPool = SocketPool(eventPool.getHandler(CH_SOCKET_READ))
+        this.socketPool = SocketPool(eventPool.getHandler(CH_SOCKET_READ))
     }
 
     private fun setupIntentFilters() {

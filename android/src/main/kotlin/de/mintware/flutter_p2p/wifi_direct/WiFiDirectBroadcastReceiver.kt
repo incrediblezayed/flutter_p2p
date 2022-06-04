@@ -49,6 +49,9 @@ class WiFiDirectBroadcastReceiver(private val manager: WifiP2pManager,
     private fun onConnectionChanged(intent: Intent) {
         val p2pInfo = intent.getParcelableExtra(WifiP2pManager.EXTRA_WIFI_P2P_INFO) as WifiP2pInfo?
         val networkInfo = intent.getParcelableExtra(WifiP2pManager.EXTRA_NETWORK_INFO) as NetworkInfo?
+        if(p2pInfo == null || networkInfo == null) {
+            return
+        }
         manager.let { manager ->
 
             if (!networkInfo!!.isConnected) {
